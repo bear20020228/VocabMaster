@@ -1,0 +1,68 @@
+body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #2c3e50; font-family: sans-serif; }
+
+/* --- 登入介面 --- */
+#login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 62, 80, 0.95); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.login-box { background: white; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); width: 300px; border: 5px solid #5d4037; }
+.login-logo { width: 100px; height: 100px; background: #eee; border-radius: 50%; border: 3px solid #5d4037; padding: 10px; margin-bottom: 20px; object-fit: contain; }
+.login-box h2 { color: #2980b9; margin-bottom: 5px; }
+.login-box p { color: #7f8c8d; font-size: 0.9em; margin-bottom: 20px; }
+.login-box input { width: 90%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; margin-bottom: 20px; font-size: 1.1em; text-align: center; font-weight: bold; }
+.login-box button { width: 100%; padding: 15px; background: #8bc34a; color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.login-box button:hover { background: #7cb342; transform: scale(1.05); }
+
+/* --- 遊戲主體框架 --- */
+#game-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 1000px; height: 650px; background: #fff; display: flex; flex-direction: column; border: 6px solid #5d4037; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); overflow: hidden; }
+.hidden { display: none !important; }
+
+/* --- 跑馬燈 --- */
+#marquee-container { height: 40px; background: #34495e; color: #f1c40f; display: flex; align-items: center; padding: 0 15px; border-bottom: 3px solid #2c3e50; }
+#marquee-pig { height: 28px; margin-right: 15px; object-fit: contain; }
+.marquee-scroll { flex: 1; overflow: hidden; white-space: nowrap; }
+#marquee-msg { display: inline-block; padding-left: 100%; animation: scrollText 25s linear infinite; font-weight: bold; font-size: 0.9em; letter-spacing: 1px; }
+@keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* --- 遊戲內部佈局 --- */
+#game-body { display: flex; flex: 1; height: calc(100% - 40px); }
+#sidebar { width: 320px; min-width: 320px; background: #fff; border-right: 5px solid #5d4037; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box; z-index: 10; }
+
+/* 左側面板細節 */
+.user-header { display: flex; align-items: center; margin-bottom: 20px; }
+.pig-avatar-container { position: relative; width: 80px; height: 80px; background: #f0f0f0; border: 3px solid #5d4037; border-radius: 15px; cursor: pointer; flex-shrink: 0; overflow: hidden; transition: 0.2s; }
+.pig-avatar-container:hover { transform: scale(1.05); }
+#pig-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+#feed-hint { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(243, 156, 18, 0.9); color: white; font-size: 11px; text-align: center; font-weight: bold; padding: 2px 0; }
+
+.user-info { flex: 1; padding-left: 15px; }
+.lv-badge { font-weight: bold; font-size: 1em; color: #5d4037; }
+.exp-bar-bg { width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin: 5px 0; }
+#exp-fill { height: 100%; width: 0%; background: #3498db; transition: 0.5s; }
+.money { font-weight: bold; font-size: 1.2em; color: #f39c12; }
+
+#quiz-panel { flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+.tag { font-size: 0.8em; color: #7f8c8d; font-weight: bold; letter-spacing: 1px; }
+#word-display { color: #2980b9; font-size: 2.2em; margin: 15px 0; }
+#options-grid { display: grid; gap: 8px; }
+#options-grid button { padding: 12px; border: 2px solid #ddd; border-radius: 10px; background: white; cursor: pointer; font-weight: bold; font-size: 1em; transition: 0.2s; }
+#options-grid button:hover { background: #8bc34a; color: white; border-color: #5d4037; }
+
+.energy-panel { margin-top: 15px; }
+.label { font-weight: bold; font-size: 0.9em; color: #333; }
+.bar-bg { width: 100%; height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin: 5px 0 10px 0; }
+#energy-fill { width: 100%; height: 100%; background: #e67e22; transition: 0.3s; }
+.warning-text { font-size: 0.85em; color: #d35400; line-height: 1.4; margin: 0; font-weight: bold; text-align: center; background: #fdebd0; padding: 5px; border-radius: 5px; }
+
+/* 農場區 */
+#farm-viewport { flex: 1; position: relative; background: #2d5a27; overflow: hidden; }
+#gameCanvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; cursor: crosshair; }
+
+/* 覆蓋層按鈕與面板 */
+#ui-overlays { position: absolute; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 50; }
+.overlay-btn { background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 0.9em; font-weight: bold; transition: 0.2s; }
+.overlay-btn:hover { background: #f39c12; transform: scale(1.05); }
+
+#floating-panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 360px; background: white; border: 4px solid #5d4037; border-radius: 15px; padding: 20px; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; font-size: 1.2em; color: #333; }
+.panel-header button { background: none; border: none; font-size: 1.2em; cursor: pointer; color: #e74c3c; font-weight: bold; }
+.shop-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+.shop-item button { padding: 5px 15px; border: none; border-radius: 10px; background: #8bc34a; color: white; cursor: pointer; font-weight: bold; }
+.shop-item button:disabled { background: #ccc; cursor: not-allowed; }

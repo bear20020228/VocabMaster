@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>VocabMaster - 登入存檔版</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-screen">
+        <div class="login-box">
+            <img src="assets/Characters/Pig_Down.png" class="login-logo">
+            <h2>VocabMaster 學習農場</h2>
+            <p>輸入你的專屬帳號以載入農場進度</p>
+            <input type="text" id="username-input" placeholder="例如：Ryan">
+            <button onclick="login()">進入農場</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <div id="marquee-container">
+            <img src="assets/Characters/Pig_Right.png" id="marquee-pig">
+            <div class="marquee-scroll">
+                <span id="marquee-msg">🎮 【系統提示】遊戲已開啟自動存檔！你的單字記憶與農場進度將被永久保存。解鎖高等級作物，獲取海量經驗值吧！</span>
+            </div>
+        </div>
+
+        <div id="game-body">
+            <aside id="sidebar">
+                <div class="user-header">
+                    <div class="pig-avatar-container" onclick="togglePanel('inventory')">
+                        <img src="assets/Characters/Pig_Down.png" id="pig-img">
+                        <div id="feed-hint">餵食面板</div>
+                    </div>
+                    <div class="user-info">
+                        <div class="lv-badge">Lv.<span id="pig-lv">1</span> 醫神豬</div>
+                        <div class="exp-bar-bg"><div id="exp-fill"></div></div>
+                        <div class="money">💰 <span id="coin-count">100</span></div>
+                    </div>
+                </div>
+
+                <div id="quiz-panel">
+                    <div class="tag">ACTIVE RECALL</div>
+                    <h1 id="word-display">Ready?</h1>
+                    <div id="options-grid"></div>
+                </div>
+
+                <div class="energy-panel">
+                    <div class="label">生長能量：<span id="energy-num">100</span>%</div>
+                    <div class="bar-bg"><div id="energy-fill"></div></div>
+                    <p class="warning-text">目前裝備：<span id="current-seed-name">🥕 蘿蔔</span></p>
+                </div>
+            </aside>
+
+            <main id="farm-viewport">
+                <canvas id="gameCanvas"></canvas>
+                
+                <div id="ui-overlays">
+                    <div class="overlay-btn" onclick="togglePanel('inventory')">🎒 背包與餵食</div>
+                    <div class="overlay-btn" onclick="togglePanel('shop')">🛒 種子商城</div>
+                </div>
+
+                <div id="floating-panel" class="hidden">
+                    <div class="panel-header">
+                        <span id="panel-title">面板</span>
+                        <button onclick="togglePanel()">✖</button>
+                    </div>
+                    <div id="panel-body"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script src="vocab.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
